@@ -1,0 +1,217 @@
+<!DOCTYPE html><html class="light" lang="id" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "secondary-fixed": "#ffdf9f",
+                  "inverse-on-surface": "#fbefe1",
+                  "card-light": "#FDFCFA",
+                  "on-tertiary-fixed": "#001e2b",
+                  "success": "#22C55E",
+                  "on-tertiary": "#ffffff",
+                  "surface-dark": "#2C2A25",
+                  "gold-100": "#FEF5E1",
+                  "on-secondary": "#ffffff",
+                  "surface-container-lowest": "#ffffff",
+                  "surface-variant": "#ece1d3",
+                  "on-secondary-fixed-variant": "#5c4300",
+                  "secondary": "#795900",
+                  "error": "#EF4444",
+                  "text-dark": "#1A1814",
+                  "on-background": "#201b12",
+                  "on-secondary-fixed": "#261a00",
+                  "primary-fixed-dim": "#f9bd3d",
+                  "inverse-primary": "#f9bd3d",
+                  "surface-container-highest": "#ece1d3",
+                  "on-tertiary-fixed-variant": "#004d66",
+                  "surface-container-low": "#fdf2e4",
+                  "primary": "#7b5800",
+                  "inverse-surface": "#353026",
+                  "secondary-container": "#ffd170",
+                  "on-primary": "#ffffff",
+                  "tertiary-container": "#63cfff",
+                  "on-primary-fixed-variant": "#5d4200",
+                  "on-primary-container": "#694b00",
+                  "on-primary-fixed": "#271900",
+                  "surface-container-high": "#f2e7d8",
+                  "error-container": "#ffdad6",
+                  "surface-tint": "#7b5800",
+                  "background": "#fff8f3",
+                  "on-secondary-container": "#785800",
+                  "primary-container": "#f5b93a",
+                  "surface": "#fff8f3",
+                  "bg-light": "#F8F6F2",
+                  "surface-dim": "#e3d8cb",
+                  "on-error-container": "#93000a",
+                  "on-tertiary-container": "#005773",
+                  "gold-200": "#FAE0A8",
+                  "on-surface": "#201b12",
+                  "outline-variant": "#d4c4ae",
+                  "tertiary": "#006686",
+                  "on-error": "#ffffff",
+                  "on-surface-variant": "#504534",
+                  "secondary-fixed-dim": "#edc062",
+                  "outline": "#827562",
+                  "primary-fixed": "#ffdea6",
+                  "surface-bright": "#fff8f3",
+                  "tertiary-fixed-dim": "#70d2ff",
+                  "divider": "#EDEBE6",
+                  "tertiary-fixed": "#c0e8ff",
+                  "surface-container": "#f8ecde"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "padding-page": "20px",
+                  "gutter": "16px",
+                  "base": "8px"
+          },
+          "fontFamily": {
+                  "display-lg": ["Plus Jakarta Sans"],
+                  "label-md": ["Plus Jakarta Sans"],
+                  "headline-lg": ["Plus Jakarta Sans"],
+                  "title-lg": ["Plus Jakarta Sans"],
+                  "body-lg": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+                  "display-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                  "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                  "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                  "title-lg": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                  "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .gold-gradient {
+      background: linear-gradient(135deg, #f9bd3d 0%, #7b5800 100%);
+    }
+    .custom-shadow {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-bg-light font-body-lg text-on-surface min-h-screen">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-padding-page h-16 w-full fixed top-0 z-50 bg-surface">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-variant/50 transition-transform active:scale-95 duration-150">
+<span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-display-lg text-display-lg font-bold text-primary">NabungEmas</h1>
+</div>
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-variant/50 transition-transform active:scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings">settings</span>
+</button>
+</header>
+<main class="pb-12 px-padding-page max-w-md mx-auto pt-24">
+<!-- Center Content -->
+<div class="flex flex-col items-center mb-8">
+<!-- Avatar with Badge -->
+
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Buat Akun Baru</h2>
+</div>
+<!-- Registration Form -->
+<form class="space-y-4" onsubmit="return false;">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant ml-1 mb-2">Nama Lengkap</label>
+<input class="w-full h-[52px] px-4 rounded-xl border border-outline bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant" placeholder="Masukkan nama lengkap" type="text">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant ml-1 mb-2">Email</label>
+<input class="w-full h-[52px] px-4 rounded-xl border border-outline bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant" placeholder="contoh@email.com" type="email">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant ml-1 mb-2">Nomor HP</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">+62</span>
+<input class="w-full h-[52px] pl-14 pr-4 rounded-xl border border-outline bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant" placeholder="812xxxx" type="tel">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant ml-1 mb-2">Kata Sandi</label>
+<div class="relative">
+<input class="w-full h-[52px] px-4 rounded-xl border border-outline bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant" placeholder="••••••••" type="password">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant cursor-pointer" data-icon="visibility">visibility</span>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant ml-1 mb-2">Konfirmasi Sandi</label>
+<div class="relative">
+<input class="w-full h-[52px] px-4 rounded-xl border border-outline bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant" placeholder="••••••••" type="password">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant cursor-pointer" data-icon="visibility_off">visibility_off</span>
+</div>
+</div>
+</div>
+<!-- T&C Checkbox -->
+<div class="flex items-start gap-3 py-2">
+<input class="mt-1 w-5 h-5 rounded border-outline text-primary focus:ring-primary cursor-pointer" id="terms" type="checkbox">
+<label class="font-label-md text-label-md text-on-surface-variant leading-relaxed" for="terms">
+          Saya setuju dengan <a class="text-primary font-bold" href="#">Syarat &amp; Ketentuan</a> serta <a class="text-primary font-bold" href="#">Kebijakan Privasi</a> yang berlaku.
+        </label>
+</div>
+<!-- Main Action -->
+<button class="w-full h-[52px] rounded-full gold-gradient text-white font-bold text-body-lg custom-shadow active:scale-95 transition-transform duration-150 mt-4">
+        Daftar Sekarang
+      </button>
+<!-- Divider -->
+<div class="flex items-center gap-4 py-4">
+<div class="h-[1px] flex-1 bg-divider"></div>
+<span class="text-label-md text-outline">Atau daftar dengan</span>
+<div class="h-[1px] flex-1 bg-divider"></div>
+</div>
+<!-- Social Button -->
+<button class="w-full h-[52px] rounded-full border border-outline bg-white text-on-surface font-semibold flex items-center justify-center gap-3 active:bg-surface-container-low transition-colors duration-150">
+<img alt="Google" class="w-5 h-5" data-alt="A clean, high-resolution Google logo centered on a white circular field. The image is crisp and professional, designed to fit into a modern UI authentication flow. The colors are the standard vibrant Google palette—red, yellow, green, and blue—rendered with soft anti-aliasing against a minimalist light background for maximum visual clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBAv29-PXqtBVmEZbf_tL6jmpaAu-_y0zyzR77rfKzoQne6OIurN0i1zY8IgZ4Ve27FZfX7Zlzm4h8mUxncBw1MTNjBGHAvDdPcVNbSwURM003y3dP7cPnG__E4DQ8NrynxymxiNds3JZlPZXqGLkufqJV7VshM0GIvrxORMwQqslFSOij_k-wQVZJ4mR3oTU-Jrgm-3zBHNqdksXZRLxQDhYolbsNNPwUCXu97zN4KtOucWfnkLhfejwN0TVzGFiFL8rKrWWzhGg">
+        Google</button>
+</form>
+<!-- Footer Link -->
+<div class="mt-8 text-center">
+<p class="font-body-lg text-on-surface-variant">
+        Sudah punya akun? <a class="text-primary font-bold hover:underline" href="#">Masuk di sini</a>
+</p>
+</div>
+</main>
+<!-- Bottom Nav Logic: Suppressed because this is a Transactional/Focused screen -->
+<script>
+    // Simple micro-interactions for password visibility
+    document.querySelectorAll('[data-icon^="visibility"]').forEach(icon => {
+      icon.addEventListener('click', function() {
+        const input = this.previousElementSibling;
+        if (input.type === 'password') {
+          input.type = 'text';
+          this.innerText = 'visibility_off';
+        } else {
+          input.type = 'password';
+          this.innerText = 'visibility';
+        }
+      });
+    });
+  </script>
+
+
+
+
+</body></html>

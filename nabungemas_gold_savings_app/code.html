@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#ffdf9f",
+                    "inverse-on-surface": "#fbefe1",
+                    "card-light": "#FDFCFA",
+                    "on-tertiary-fixed": "#001e2b",
+                    "success": "#22C55E",
+                    "on-tertiary": "#ffffff",
+                    "surface-dark": "#2C2A25",
+                    "gold-100": "#FEF5E1",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#ece1d3",
+                    "on-secondary-fixed-variant": "#5c4300",
+                    "secondary": "#795900",
+                    "error": "#EF4444",
+                    "text-dark": "#1A1814",
+                    "on-background": "#201b12",
+                    "on-secondary-fixed": "#261a00",
+                    "primary-fixed-dim": "#f9bd3d",
+                    "inverse-primary": "#f9bd3d",
+                    "surface-container-highest": "#ece1d3",
+                    "on-tertiary-fixed-variant": "#004d66",
+                    "surface-container-low": "#fdf2e4",
+                    "primary": "#7b5800",
+                    "inverse-surface": "#353026",
+                    "secondary-container": "#ffd170",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#63cfff",
+                    "on-primary-fixed-variant": "#5d4200",
+                    "on-primary-container": "#694b00",
+                    "on-primary-fixed": "#271900",
+                    "surface-container-high": "#f2e7d8",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#7b5800",
+                    "background": "#fff8f3",
+                    "on-secondary-container": "#785800",
+                    "primary-container": "#f5b93a",
+                    "surface": "#fff8f3",
+                    "bg-light": "#F8F6F2",
+                    "surface-dim": "#e3d8cb",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#005773",
+                    "gold-200": "#FAE0A8",
+                    "on-surface": "#201b12",
+                    "outline-variant": "#d4c4ae",
+                    "tertiary": "#006686",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#504534",
+                    "secondary-fixed-dim": "#edc062",
+                    "outline": "#827562",
+                    "primary-fixed": "#ffdea6",
+                    "surface-bright": "#fff8f3",
+                    "tertiary-fixed-dim": "#70d2ff",
+                    "divider": "#EDEBE6",
+                    "tertiary-fixed": "#c0e8ff",
+                    "surface-container": "#f8ecde"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "padding-page": "20px",
+                    "gutter": "16px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "display-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "title-lg": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .splash-gradient {
+            background: linear-gradient(135deg, #F5B93A 0%, #F7CA6A 100%);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+        .fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background antialiased overflow-hidden">
+<!-- Main Canvas 390x844 -->
+<main class="relative w-full h-screen max-w-[390px] mx-auto overflow-hidden splash-gradient flex flex-col items-center justify-center">
+<!-- Atmospheric Background Elements -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="absolute top-[-10%] left-[-10%] w-64 h-64 bg-white rounded-full blur-3xl"></div>
+<div class="absolute bottom-[-5%] right-[-5%] w-80 h-80 bg-white rounded-full blur-3xl"></div>
+</div>
+<!-- Logo Container -->
+<div class="relative z-10 flex flex-col items-center justify-center fade-in">
+<!-- Icon Cluster -->
+<div class="mb-6 flex items-center justify-center bg-white/20 backdrop-blur-md p-6 rounded-full shadow-xl float-animation border border-white/30">
+<div class="relative w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-primary text-[48px]" data-icon="savings" style="font-variation-settings: 'FILL' 1;">
+                        savings
+                    </span>
+<!-- Sprout Overlay -->
+<div class="absolute -top-1 -right-1 bg-success p-1.5 rounded-full border-2 border-white shadow-sm">
+<span class="material-symbols-outlined text-white text-[16px]" data-icon="eco" style="font-variation-settings: 'FILL' 1;">
+                            eco
+                        </span>
+</div>
+</div>
+</div>
+<!-- Brand Name -->
+<div class="text-center">
+<h1 class="font-display-lg text-display-lg text-white tracking-tight drop-shadow-sm mb-2">
+                    NabungEmas
+                </h1>
+<p class="font-body-lg text-body-lg italic text-white/90 font-medium tracking-wide">
+                    Kelola target, raih impianmu
+                </p>
+</div>
+</div>
+<!-- Subtle Loading Indicator or Decorative Base -->
+<div class="absolute bottom-16 flex flex-col items-center fade-in" style="animation-delay: 0.5s;">
+<div class="w-1.5 h-1.5 bg-white/60 rounded-full animate-bounce"></div>
+<div class="mt-8">
+<div class="w-32 h-1 bg-white/20 rounded-full overflow-hidden">
+<div class="h-full bg-white w-1/3 rounded-full animate-[progress_2s_ease-in-out_infinite]"></div>
+</div>
+</div>
+</div>
+<!-- Decorative Bottom Texture -->
+<div class="absolute bottom-0 w-full h-32 opacity-20 pointer-events-none">
+<svg class="w-full h-full" fill="none" viewbox="0 0 390 128" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 128V64.5C40 42.5 80 86.5 120 86.5C160 86.5 200 22.5 240 22.5C280 22.5 320 86.5 360 86.5C400 86.5 440 64.5 480 64.5V128H0Z" fill="white"></path>
+</svg>
+</div>
+</main>
+<script>
+        // Micro-interaction for the progress bar animation
+        document.head.insertAdjacentHTML('beforeend', `
+            <style>
+                @keyframes progress {
+                    0% { transform: translateX(-100%); }
+                    50% { transform: translateX(100%); }
+                    100% { transform: translateX(-100%); }
+                }
+            </style>
+        `);
+
+        // Handle splash screen timeout simulation
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Splash Screen Loaded: NabungEmas');
+            // In a real app, logic for transition to login/dashboard would go here
+        });
+    </script>
+</body></html>
