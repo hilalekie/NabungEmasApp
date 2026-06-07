@@ -52,6 +52,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -89,6 +90,8 @@ import com.example.nabungemas.ui.theme.Neutral900
 import com.example.nabungemas.ui.theme.PlusJakartaSans
 import com.example.nabungemas.ui.theme.Success500
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun GoogleSignInButton(
@@ -156,6 +159,10 @@ fun LoginScreen(
 
     val scrollState = rememberScrollState()
 
+    // Inisialisasi ViewModel untuk Supabase
+    val scope = rememberCoroutineScope()
+    val authViewModel: com.example.nabungemas.ui.auth.AuthViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -165,7 +172,7 @@ fun LoginScreen(
             .padding(horizontal = 20.dp, vertical = 24.dp)
     ) {
         Spacer(modifier = Modifier.height(24.dp))
-        
+
         // Brand logo header
         Column(
             modifier = Modifier.fillMaxWidth(),
@@ -205,7 +212,7 @@ fun LoginScreen(
             fontSize = 24.sp,
             color = MaterialTheme.colorScheme.onSurface
         )
-        
+
         Text(
             text = "Masuk untuk melanjutkan menabung emas.",
             fontFamily = PlusJakartaSans,
@@ -219,7 +226,7 @@ fun LoginScreen(
         // Form Fields
         GoldTextField(
             value = email,
-            onValueChange = { 
+            onValueChange = {
                 email = it
                 emailError = ""
             },
@@ -232,6 +239,7 @@ fun LoginScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // 2. Kolom Input Password
         GoldTextField(
             value = password,
             onValueChange = { password = it },
@@ -241,7 +249,7 @@ fun LoginScreen(
             trailingIcon = {
                 val icon = if (isPasswordVisible) Icons.Rounded.VisibilityOff else Icons.Rounded.Visibility
                 IconButton(onClick = { isPasswordVisible = !isPasswordVisible }) {
-                    Icon(imageVector = icon, contentDescription = "Toggle Password Visibility", tint = MutedText)
+                    Icon(imageVector = icon, contentDescription = "Toggle Password", tint = MutedText)
                 }
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -274,8 +282,16 @@ fun LoginScreen(
                 } else if (!email.contains("@")) {
                     emailError = "Format email tidak valid"
                 } else {
-                    navController.navigate(Screen.Main.route) {
-                        popUpTo(Screen.Login.route) { inclusive = true }
+                    // Cek ke Supabase
+                    scope.launch {
+                        val success = authViewModel.login(email, password)
+                        if (success) {
+                            navController.navigate(Screen.Main.route) {
+                                popUpTo(Screen.Login.route) { inclusive = true }
+                            }
+                        } else {
+                            emailError = "Login gagal. Periksa email dan password."
+                        }
                     }
                 }
             },
@@ -310,7 +326,7 @@ fun LoginScreen(
 
         GoogleSignInButton(
             onClick = {
-                // Fast login
+                // Untuk tombol Google, biarkan dummy dulu karena setup Google Auth butuh file JSON terpisah
                 navController.navigate(Screen.Main.route) {
                     popUpTo(Screen.Login.route) { inclusive = true }
                 }
@@ -363,6 +379,8 @@ fun RegisterScreen(
     var isConfirmPasswordVisible by remember { mutableStateOf(false) }
 
     val scrollState = rememberScrollState()
+    val scope = rememberCoroutineScope()
+    val authViewModel: com.example.nabungemas.ui.auth.AuthViewModel = viewModel()
 
     Column(
         modifier = modifier
@@ -563,8 +581,13 @@ fun RegisterScreen(
                 text = "Daftar Sekarang",
                 onClick = {
                     if (termsChecked && name.isNotEmpty() && email.isNotEmpty()) {
-                        navController.navigate(Screen.Main.route) {
-                            popUpTo(Screen.Login.route) { inclusive = true }
+                        scope.launch {
+                            val success = authViewModel.register(email, password)
+                            if (success) {
+                                navController.navigate(Screen.Main.route) {
+                                    popUpTo(Screen.Login.route) { inclusive = true }
+                                }
+                            }
                         }
                     }
                 },

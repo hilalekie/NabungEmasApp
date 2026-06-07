@@ -16,3 +16,8 @@ buildscript {
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
+
+plugins {
+    // ... (plugin lain)
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0" apply false
+}

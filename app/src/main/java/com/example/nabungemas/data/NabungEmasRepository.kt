@@ -11,6 +11,7 @@ import java.util.Locale
 
 class NabungEmasRepository {
 
+
     // Pre-populate mock data
     private val _goals = MutableStateFlow<List<SavingGoal>>(initialGoals)
     val goals: StateFlow<List<SavingGoal>> = _goals.asStateFlow()

@@ -41,6 +41,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -68,7 +69,17 @@ import com.example.nabungemas.ui.theme.MutedText
 import com.example.nabungemas.ui.theme.Neutral800
 import com.example.nabungemas.ui.theme.PlusJakartaSans
 import com.example.nabungemas.ui.theme.Success500
+import com.example.nabungemas.data.SupabaseHelper
+import io.github.jan.supabase.gotrue.auth
+import io.github.jan.supabase.postgrest.postgrest
+import kotlinx.serialization.Serializable
 
+
+@Serializable
+data class UserProfile(
+    val id: String,
+    val full_name: String
+)
 @Composable
 fun ProfileScreen(
     navController: NavController,
@@ -81,10 +92,40 @@ fun ProfileScreen(
 
     val totalGrams = goals.sumOf { it.accumulatedGrams }
     val totalTransactions = transactions.size
-    val avgProgress = if (goals.isNotEmpty()) goals.map { it.progress }.average() * 100 else 0.0
+
+    val progressList = goals.map { it.progress }
+    val avgProgress = if (progressList.isNotEmpty()) progressList.average() * 100 else 0.0
 
     var darkModeEnabled by remember { mutableStateOf(false) }
     var showLogoutDialog by remember { mutableStateOf(false) }
+    var displayName by remember { mutableStateOf("Memuat...") }
+    var userEmail by remember { mutableStateOf("Memuat...") }
+
+    LaunchedEffect(Unit) {
+        val user = SupabaseHelper.client.auth.currentUserOrNull()
+
+        if (user == null) {
+            android.util.Log.e("DebugProfile", "User null! Belum login?")
+            displayName = "Tidak Login"
+            return@LaunchedEffect
+        }
+
+        userEmail = user.email ?: "Email kosong"
+        android.util.Log.d("DebugProfile", "User ditemukan: ${user.id}")
+
+        try {
+            val response = SupabaseHelper.client.postgrest["profiles"]
+                .select {
+                    filter { eq("id", user.id) } // Pastikan ID di tabel profiles = Auth ID
+                }.decodeSingle<UserProfile>()
+
+            displayName = response.full_name
+            android.util.Log.d("DebugProfile", "Data berhasil diambil: ${response.full_name}")
+        } catch (e: Exception) {
+            android.util.Log.e("DebugProfile", "Error fetch: ${e.message}")
+            displayName = "Gagal Ambil Data"
+        }
+    }
 
     if (showLogoutDialog) {
         ConfirmationDialog(
@@ -198,19 +239,19 @@ fun ProfileScreen(
                 Spacer(modifier = Modifier.height(12.dp))
 
                 Text(
-                    text = "Muhammad Fatahila",
+                    text = displayName,
                     fontFamily = PlusJakartaSans,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 20.sp,
+                    fontSize = 18.sp,
                     color = MaterialTheme.colorScheme.onSurface
                 )
-                Spacer(modifier = Modifier.height(2.dp))
                 Text(
-                    text = "fatahila.m@email.com",
+                    text = userEmail,
                     fontFamily = PlusJakartaSans,
                     fontSize = 13.sp,
                     color = MutedText
                 )
+
                 Spacer(modifier = Modifier.height(8.dp))
                 Box(
                     modifier = Modifier
