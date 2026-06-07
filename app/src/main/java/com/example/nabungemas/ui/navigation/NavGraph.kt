@@ -67,6 +67,13 @@ fun AppNavGraph(
     navController: NavHostController = rememberNavController(),
     modifier: Modifier = Modifier
 ) {
+<<<<<<< HEAD
+=======
+    // Menyediakan satu ViewModel autentikasi untuk dipakai bersama
+    val authViewModel: com.example.nabungemas.ui.screens.AuthViewModel =
+        androidx.lifecycle.viewmodel.compose.viewModel()
+
+>>>>>>> 07b0f42 (Inisialisasi git dengan .gitignore yang bersih)
     NavHost(
         navController = navController,
         startDestination = Screen.Splash.route,
@@ -75,6 +82,7 @@ fun AppNavGraph(
         composable(Screen.Splash.route) {
             SplashScreen(navController = navController)
         }
+<<<<<<< HEAD
         
         composable(Screen.Login.route) {
             LoginScreen(navController = navController)
@@ -82,12 +90,27 @@ fun AppNavGraph(
         
         composable(Screen.Register.route) {
             RegisterScreen(navController = navController)
+=======
+
+        composable(Screen.Login.route) {
+            // Memanggil fungsi LoginScreen asli kelompokmu dengan tambahan parameter viewModel
+            LoginScreen(navController = navController, authViewModel = authViewModel)
+        }
+
+        composable(Screen.Register.route) {
+            // Memanggil fungsi RegisterScreen asli kelompokmu dengan tambahan parameter viewModel
+            RegisterScreen(navController = navController, authViewModel = authViewModel)
+>>>>>>> 07b0f42 (Inisialisasi git dengan .gitignore yang bersih)
         }
 
         composable(
             route = "main?tab={tab}",
             arguments = listOf(
+<<<<<<< HEAD
                 navArgument("tab") { 
+=======
+                navArgument("tab") {
+>>>>>>> 07b0f42 (Inisialisasi git dengan .gitignore yang bersih)
                     type = NavType.StringType
                     nullable = true
                     defaultValue = null
@@ -97,7 +120,12 @@ fun AppNavGraph(
             val requestedTab = backStackEntry.arguments?.getString("tab")
             MainTabsHost(
                 navController = navController,
+<<<<<<< HEAD
                 initialTabRoute = requestedTab
+=======
+                initialTabRoute = requestedTab,
+                authViewModel = authViewModel
+>>>>>>> 07b0f42 (Inisialisasi git dengan .gitignore yang bersih)
             )
         }
 
@@ -160,7 +188,12 @@ fun AppNavGraph(
         }
 
         composable(Screen.Profile.route) {
+<<<<<<< HEAD
             ProfileScreen(navController = navController)
+=======
+            // Memanggil fungsi ProfileScreen asli kelompokmu dengan tambahan parameter viewModel
+            ProfileScreen(navController = navController, authViewModel = authViewModel)
+>>>>>>> 07b0f42 (Inisialisasi git dengan .gitignore yang bersih)
         }
 
         composable(Screen.EditProfile.route) {
@@ -176,7 +209,12 @@ fun AppNavGraph(
 @Composable
 fun MainTabsHost(
     navController: NavHostController,
+<<<<<<< HEAD
     initialTabRoute: String?
+=======
+    initialTabRoute: String?,
+    authViewModel: com.example.nabungemas.ui.screens.AuthViewModel
+>>>>>>> 07b0f42 (Inisialisasi git dengan .gitignore yang bersih)
 ) {
     val tabs = listOf(
         MainTab.Home,
@@ -187,7 +225,10 @@ fun MainTabsHost(
 
     var currentTab by remember { mutableStateOf<MainTab>(MainTab.Home) }
 
+<<<<<<< HEAD
     // Sync state if a specific tab was requested via route params
+=======
+>>>>>>> 07b0f42 (Inisialisasi git dengan .gitignore yang bersih)
     LaunchedEffect(initialTabRoute) {
         if (initialTabRoute != null) {
             val matchingTab = tabs.find { it.route == initialTabRoute }
@@ -209,7 +250,11 @@ fun MainTabsHost(
                 tabs.forEach { tab ->
                     val isSelected = currentTab == tab
                     val icon = getTabIcon(tab)
+<<<<<<< HEAD
                     
+=======
+
+>>>>>>> 07b0f42 (Inisialisasi git dengan .gitignore yang bersih)
                     NavigationBarItem(
                         selected = isSelected,
                         onClick = { currentTab = tab },
@@ -249,7 +294,12 @@ fun MainTabsHost(
                 MainTab.Home -> HomeScreen(navController = navController)
                 MainTab.Saving -> SavingListScreen(navController = navController)
                 MainTab.Price -> PriceScreen()
+<<<<<<< HEAD
                 MainTab.About -> AboutScreen(navController = navController)
+=======
+                // Menyuntikkan ViewModel ke halaman About asli bawaan kelompokmu
+                MainTab.About -> AboutScreen(navController = navController, authViewModel = authViewModel)
+>>>>>>> 07b0f42 (Inisialisasi git dengan .gitignore yang bersih)
             }
         }
     }

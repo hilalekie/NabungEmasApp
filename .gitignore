@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Gradle files
 .gradle/
 build/
@@ -17,5 +18,18 @@ local.properties
 *.ap_
 
 # OS files
+=======
+# Android build files
+.gradle/
+.idea/
+build/
+app/build/
+**/build/
+
+# Local configuration files
+local.properties
+
+# OS specific files
+>>>>>>> 07b0f42 (Inisialisasi git dengan .gitignore yang bersih)
 .DS_Store
 Thumbs.db
