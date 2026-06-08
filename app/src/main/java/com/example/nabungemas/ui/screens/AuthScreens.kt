@@ -1,13 +1,5 @@
 package com.example.nabungemas.ui.screens
 
-import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -17,11 +9,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -32,12 +22,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.ArrowBack
-import androidx.compose.material.icons.rounded.Eco
-import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.Savings
-import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Visibility
 import androidx.compose.material.icons.rounded.VisibilityOff
 import androidx.compose.material3.Checkbox
@@ -56,40 +42,27 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.nabungemas.ui.components.GoldButton
 import com.example.nabungemas.ui.components.GoldTextField
-import com.example.nabungemas.ui.components.OutlineButton
 import com.example.nabungemas.ui.navigation.Screen
 import com.example.nabungemas.ui.theme.DividerColor
 import com.example.nabungemas.ui.theme.Gold100
-import com.example.nabungemas.ui.theme.Gold200
-import com.example.nabungemas.ui.theme.Gold300
 import com.example.nabungemas.ui.theme.Gold400
 import com.example.nabungemas.ui.theme.MutedText
-import com.example.nabungemas.ui.theme.Neutral050
-import com.example.nabungemas.ui.theme.Neutral100
 import com.example.nabungemas.ui.theme.Neutral200
 import com.example.nabungemas.ui.theme.Neutral700
 import com.example.nabungemas.ui.theme.Neutral800
-import com.example.nabungemas.ui.theme.Neutral900
 import com.example.nabungemas.ui.theme.PlusJakartaSans
-import com.example.nabungemas.ui.theme.Success500
-import kotlinx.coroutines.delay
 
 @Composable
 fun GoogleSignInButton(
@@ -145,7 +118,7 @@ fun GoogleSignInButton(
 @Composable
 fun LoginScreen(
     navController: NavController,
-    authViewModel: AuthViewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
+    authViewModel: AuthViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
     var email by remember { mutableStateOf("") }
@@ -189,16 +162,40 @@ fun LoginScreen(
                     .border(2.dp, Color.White, CircleShape),
                 contentAlignment = Alignment.Center
             ) {
-                Icon(imageVector = Icons.Rounded.Savings, contentDescription = "Logo", tint = Gold400, modifier = Modifier.size(40.dp))
+                Icon(
+                    imageVector = Icons.Rounded.Savings,
+                    contentDescription = "Logo",
+                    tint = Gold400,
+                    modifier = Modifier.size(40.dp)
+                )
             }
             Spacer(modifier = Modifier.height(12.dp))
-            Text(text = "NabungEmas", fontFamily = PlusJakartaSans, fontWeight = FontWeight.Bold, fontSize = 28.sp, color = Gold400)
+            Text(
+                text = "NabungEmas",
+                fontFamily = PlusJakartaSans,
+                fontWeight = FontWeight.Bold,
+                fontSize = 28.sp,
+                color = Gold400
+            )
         }
 
         Spacer(modifier = Modifier.height(40.dp))
 
-        Text(text = "Selamat Datang Kembali", fontFamily = PlusJakartaSans, fontWeight = FontWeight.SemiBold, fontSize = 24.sp, color = MaterialTheme.colorScheme.onSurface)
-        Text(text = "Masuk untuk melanjutkan menabung emas.", fontFamily = PlusJakartaSans, fontSize = 14.sp, color = MutedText, modifier = Modifier.padding(top = 4.dp))
+        Text(
+            text = "Selamat Datang Kembali",
+            fontFamily = PlusJakartaSans,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 24.sp,
+            color = MaterialTheme.colorScheme.onSurface
+        )
+
+        Text(
+            text = "Masuk untuk melanjutkan menabung emas.",
+            fontFamily = PlusJakartaSans,
+            fontSize = 14.sp,
+            color = MutedText,
+            modifier = Modifier.padding(top = 4.dp)
+        )
 
         Spacer(modifier = Modifier.height(32.dp))
 
@@ -208,7 +205,11 @@ fun LoginScreen(
 
         GoldTextField(
             value = email,
-            onValueChange = { email = it; emailError = ""; authViewModel.clearError() },
+            onValueChange = {
+                email = it
+                emailError = ""
+                authViewModel.clearError()
+            },
             label = "Email",
             placeholder = "nama@email.com",
             errorText = emailError,
@@ -220,21 +221,40 @@ fun LoginScreen(
 
         GoldTextField(
             value = password,
-            onValueChange = { password = it; authViewModel.clearError() },
+            onValueChange = {
+                password = it
+                authViewModel.clearError()
+            },
             label = "Password",
             placeholder = "••••••••",
             visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
                 val icon = if (isPasswordVisible) Icons.Rounded.VisibilityOff else Icons.Rounded.Visibility
                 IconButton(onClick = { isPasswordVisible = !isPasswordVisible }) {
-                    Icon(imageVector = icon, contentDescription = null, tint = MutedText)
+                    Icon(imageVector = icon, contentDescription = "Toggle Password Visibility", tint = MutedText)
                 }
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             modifier = Modifier.fillMaxWidth()
         )
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 12.dp),
+            horizontalArrangement = Arrangement.End
+        ) {
+            Text(
+                text = "Lupa kata sandi?",
+                fontFamily = PlusJakartaSans,
+                fontWeight = FontWeight.Medium,
+                fontSize = 12.sp,
+                color = Gold400,
+                modifier = Modifier.clickable { /* action */ }
+            )
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         GoldButton(
             text = if (isLoading) "Memuat..." else "Masuk",
@@ -252,10 +272,58 @@ fun LoginScreen(
         )
 
         Spacer(modifier = Modifier.height(24.dp))
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-            Text(text = "Belum punya akun? ", fontFamily = PlusJakartaSans, fontSize = 14.sp, color = MutedText)
-            Text(text = "Daftar sekarang", fontFamily = PlusJakartaSans, fontWeight = FontWeight.Bold, fontSize = 14.sp, color = Gold400,
-                modifier = Modifier.clickable { navController.navigate(Screen.Register.route) }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            HorizontalDivider(
+                modifier = Modifier.weight(1f),
+                color = if (isSystemInDarkTheme()) Neutral700 else DividerColor
+            )
+            Text(
+                text = "Atau masuk dengan",
+                fontFamily = PlusJakartaSans,
+                fontSize = 12.sp,
+                color = MutedText,
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+            HorizontalDivider(
+                modifier = Modifier.weight(1f),
+                color = if (isSystemInDarkTheme()) Neutral700 else DividerColor
+            )
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        GoogleSignInButton(
+            onClick = {
+                // Implement logic as needed
+            },
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(32.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "Belum punya akun? ",
+                fontFamily = PlusJakartaSans,
+                fontSize = 14.sp,
+                color = MutedText
+            )
+            Text(
+                text = "Daftar sekarang",
+                fontFamily = PlusJakartaSans,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
+                color = Gold400,
+                modifier = Modifier.clickable {
+                    navController.navigate(Screen.Register.route)
+                }
             )
         }
     }
@@ -264,7 +332,7 @@ fun LoginScreen(
 @Composable
 fun RegisterScreen(
     navController: NavController,
-    authViewModel: AuthViewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
+    authViewModel: AuthViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
     var name by remember { mutableStateOf("") }
@@ -295,46 +363,104 @@ fun RegisterScreen(
             .background(MaterialTheme.colorScheme.background)
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth().statusBarsPadding().background(MaterialTheme.colorScheme.surface).padding(horizontal = 12.dp, vertical = 8.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .statusBarsPadding()
+                .background(MaterialTheme.colorScheme.surface)
+                .padding(horizontal = 12.dp, vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             IconButton(onClick = { navController.popBackStack() }) {
-                Icon(imageVector = Icons.Rounded.ArrowBack, contentDescription = "Back", tint = Gold400)
+                Icon(
+                    imageVector = Icons.Rounded.ArrowBack,
+                    contentDescription = "Back",
+                    tint = Gold400
+                )
             }
-            Text(text = "Daftar Akun", fontFamily = PlusJakartaSans, fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Gold400, modifier = Modifier.padding(start = 8.dp))
+            Text(
+                text = "Daftar Akun",
+                fontFamily = PlusJakartaSans,
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp,
+                color = Gold400,
+                modifier = Modifier.padding(start = 8.dp)
+            )
         }
 
         Column(
-            modifier = Modifier.fillMaxSize().verticalScroll(scrollState).padding(horizontal = 20.dp, vertical = 20.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(scrollState)
+                .padding(horizontal = 20.dp, vertical = 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Buat Akun Baru", fontFamily = PlusJakartaSans, fontWeight = FontWeight.SemiBold, fontSize = 24.sp, color = MaterialTheme.colorScheme.onSurface)
+            Text(
+                text = "Buat Akun Baru",
+                fontFamily = PlusJakartaSans,
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 24.sp,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+
             Spacer(modifier = Modifier.height(24.dp))
 
             if (errorMessage != null) {
                 Text(text = errorMessage!!, color = Color.Red, fontSize = 14.sp, modifier = Modifier.padding(bottom = 16.dp))
             }
 
-            GoldTextField(value = name, onValueChange = { name = it }, label = "Nama Lengkap", placeholder = "Masukkan nama lengkap", modifier = Modifier.fillMaxWidth())
+            GoldTextField(
+                value = name,
+                onValueChange = { name = it },
+                label = "Nama Lengkap",
+                placeholder = "Masukkan nama lengkap",
+                modifier = Modifier.fillMaxWidth()
+            )
+
             Spacer(modifier = Modifier.height(16.dp))
-            GoldTextField(value = email, onValueChange = { email = it }, label = "Email", placeholder = "contoh@email.com", keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email), modifier = Modifier.fillMaxWidth())
+
+            GoldTextField(
+                value = email,
+                onValueChange = { email = it },
+                label = "Email",
+                placeholder = "contoh@email.com",
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                modifier = Modifier.fillMaxWidth()
+            )
+
             Spacer(modifier = Modifier.height(16.dp))
-            GoldTextField(value = phone, onValueChange = { phone = it }, label = "Nomor HP", placeholder = "812xxxxxx", keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone), modifier = Modifier.fillMaxWidth())
+
+            GoldTextField(
+                value = phone,
+                onValueChange = { phone = it },
+                label = "Nomor HP",
+                placeholder = "812xxxxxx",
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+                modifier = Modifier.fillMaxWidth()
+            )
+
             Spacer(modifier = Modifier.height(16.dp))
 
             GoldTextField(
                 value = password,
-                onValueChange = { password = it; passwordError = "" },
+                onValueChange = {
+                    password = it
+                    passwordError = ""
+                },
                 label = "Kata Sandi",
                 placeholder = "••••••••",
                 visualTransformation = PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 modifier = Modifier.fillMaxWidth()
             )
+
             Spacer(modifier = Modifier.height(16.dp))
+
             GoldTextField(
                 value = confirmPassword,
-                onValueChange = { confirmPassword = it; passwordError = "" },
+                onValueChange = {
+                    confirmPassword = it
+                    passwordError = ""
+                },
                 label = "Konfirmasi Sandi",
                 placeholder = "••••••••",
                 errorText = passwordError,
@@ -345,7 +471,6 @@ fun RegisterScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // PERBAIKAN UTAMA: Menyisipkan komponen Row Checkbox S&K milik kelompokmu yang hilang
             Row(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp),
                 verticalAlignment = Alignment.CenterVertically
@@ -378,19 +503,34 @@ fun RegisterScreen(
                     } else if (password.length < 6) {
                         passwordError = "Kata sandi Supabase minimal harus 6 karakter"
                     } else {
-                        authViewModel.signUp(email, password, name, phone)
+                        authViewModel.signUp(email, password, name)
                     }
                 },
-                // Ditambahkan validasi 'confirmPassword' dan 'termsChecked' wajib bernilai true gess
                 enabled = !isLoading && termsChecked && name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty(),
                 modifier = Modifier.fillMaxWidth()
             )
 
             Spacer(modifier = Modifier.height(24.dp))
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-                Text(text = "Sudah punya akun? ", fontFamily = PlusJakartaSans, fontSize = 14.sp, color = MutedText)
-                Text(text = "Masuk di sini", fontFamily = PlusJakartaSans, fontWeight = FontWeight.Bold, fontSize = 14.sp, color = Gold400,
-                    modifier = Modifier.clickable { navController.popBackStack() }
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "Sudah punya akun? ",
+                    fontFamily = PlusJakartaSans,
+                    fontSize = 14.sp,
+                    color = MutedText
+                )
+                Text(
+                    text = "Masuk di sini",
+                    fontFamily = PlusJakartaSans,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 14.sp,
+                    color = Gold400,
+                    modifier = Modifier.clickable {
+                        navController.popBackStack()
+                    }
                 )
             }
             Spacer(modifier = Modifier.height(40.dp))

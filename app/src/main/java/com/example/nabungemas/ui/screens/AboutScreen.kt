@@ -63,7 +63,6 @@ import com.example.nabungemas.ui.theme.PlusJakartaSans
 @Composable
 fun AboutScreen(
     navController: NavController,
-    authViewModel: com.example.nabungemas.ui.screens.AuthViewModel, // Tambahkan baris ini gess
     modifier: Modifier = Modifier
 ) {
     var showLogoutDialog by remember { mutableStateOf(false) }
@@ -74,11 +73,8 @@ fun AboutScreen(
         ConfirmationDialog(
             onDismissRequest = { showLogoutDialog = false },
             onConfirm = {
-                // UPDATE: Panggil fungsi logout asli Supabase di sini gess!
-                authViewModel.signOut {
-                    navController.navigate(Screen.Login.route) {
-                        popUpTo(0) { inclusive = true }
-                    }
+                navController.navigate(Screen.Login.route) {
+                    popUpTo(0) { inclusive = true }
                 }
             },
             title = "Keluar dari Aplikasi?",
@@ -99,7 +95,6 @@ fun AboutScreen(
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
         ) {
-            // Top App Bar with status bar padding
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -124,7 +119,6 @@ fun AboutScreen(
             ) {
                 Spacer(modifier = Modifier.height(20.dp))
 
-                // App Logo Box
                 Box(
                     modifier = Modifier
                         .size(96.dp)
@@ -159,7 +153,6 @@ fun AboutScreen(
 
                 Spacer(modifier = Modifier.height(32.dp))
 
-                // Section 1: Developer Info
                 AboutSectionCard(title = "Pengembang") {
                     AboutLinkRow(
                         icon = Icons.Rounded.Person,
@@ -177,7 +170,6 @@ fun AboutScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Section 2: Open Source Libraries
                 AboutSectionCard(title = "Pustaka Open Source") {
                     AboutLinkRow(icon = Icons.Rounded.Code, label = "Jetpack Compose", value = "v1.6.0")
                     Spacer(modifier = Modifier.height(12.dp))
@@ -188,7 +180,6 @@ fun AboutScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Section 3: Legal & Actions
                 AboutSectionCard(title = "Hukum & Tindakan") {
                     AboutLinkRow(
                         icon = Icons.Rounded.Policy,
@@ -204,7 +195,6 @@ fun AboutScreen(
                         isClickable = true
                     )
                     Spacer(modifier = Modifier.height(16.dp))
-                    // Logout button
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()

@@ -51,7 +51,7 @@ import com.example.nabungemas.ui.theme.PlusJakartaSans
 @Composable
 fun EditProfileScreen(
     navController: NavController,
-    authViewModel: AuthViewModel,
+    authViewModel: AuthViewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
     modifier: Modifier = Modifier
 ) {
     var name by remember { mutableStateOf(authViewModel.getCurrentUserFullName()) }
