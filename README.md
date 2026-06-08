@@ -128,26 +128,6 @@ Pastikan kamu sudah menginstal:
 
 ---
 
-## Struktur Proyek
-NabungEmasApp/
-├── app/
-│ └── src/main/
-│ ├── java/.../nabungemas/
-│ │ ├── data/
-│ │ ├── di/
-│ │ ├── domain/
-│ │ ├── ui/
-│ │ │ ├── components/
-│ │ │ ├── screen/
-│ │ │ └── theme/
-│ │ └── viewmodel/
-│ └── res/
-├── DESIGN.md
-├── README.md
-└── build.gradle.kts
-
----
-
 ## Lisensi
 
 Proyek ini dikembangkan untuk keperluan akademik berdasarkan karya asli [Muhammad Fatahila](https://github.com/artfath) yang merupakan pemenang **Compose Migration Champion Challenge 2023**. Seluruh hak cipta atas konsep dan implementasi awal tetap menjadi milik kreator asli.
