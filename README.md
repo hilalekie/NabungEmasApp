@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  Aplikasi Android untuk manajemen tabungan emas secara terstruktur — catat, pantau, dan raih targetmu.
+  Aplikasi Android untuk manajemen tabungan emas secara terstruktur—catat, pantau, dan raih targetmu.
 </p>
 
 ---
@@ -17,7 +17,7 @@
 
 **NabungEmas** adalah aplikasi mobile berbasis Android yang dirancang untuk membantu pengguna mengelola tabungan emas secara terencana dan terstruktur. Pengguna dapat menetapkan target tabungan emas, mencatat setiap transaksi pembelian, serta memantau progres ketercapaian target secara real-time lengkap dengan referensi harga emas dan kurs mata uang terkini.
 
-Aplikasi ini merupakan hasil **migrasi UI dari XML ke Jetpack Compose** yang memenangkan **Compose Migration Champion Challenge 2023** — kompetisi kolaborasi antara **Google** dan **Dicoding Indonesia**. Pada pengembangan lanjutan ini, kami melakukan sejumlah modifikasi UI untuk pemenuhan proyek akhir mata kuliah **Pengembangan Aplikasi Mobile**.
+Aplikasi ini merupakan hasil **migrasi UI dari XML ke Jetpack Compose** yang memenangkan **Compose Migration Champion Challenge 2023**, kompetisi kolaborasi antara **Google** dan **Dicoding Indonesia**. Pada pengembangan lanjutan ini, kami melakukan sejumlah modifikasi UI untuk pemenuhan proyek akhir mata kuliah **Pengembangan Aplikasi Mobile**.
 
 ---
 
@@ -131,21 +131,20 @@ Pastikan kamu sudah menginstal:
 ## Struktur Proyek
 NabungEmasApp/
 ├── app/
-│ └── src/main/
-│ ├── java/.../nabungemas/
-│ │ ├── data/ # Room DB, Repository, API Service
-│ │ ├── di/ # Hilt Dependency Injection modules
-│ │ ├── domain/ # Use cases & model
-│ │ ├── ui/
-│ │ │ ├── components/ # Reusable Compose components
-│ │ │ ├── screen/ # Screen composables (Home, Saving, Price, About)
-│ │ │ └── theme/ # Color, Typography, Theme tokens
-│ │ └── viewmodel/ # ViewModels per feature
-│ └── res/
-├── DESIGN.md # Design system documentation
+│   └── src/main/
+│       ├── java/.../nabungemas/
+│       │   ├── data/           # Room DB, Repository, API Service
+│       │   ├── di/             # Hilt Dependency Injection modules
+│       │   ├── domain/         # Use cases & model
+│       │   ├── ui/
+│       │   │   ├── components/ # Reusable Compose components
+│       │   │   ├── screen/     # Screen composables (Home, Saving, Price, About)
+│       │   │   └── theme/      # Color, Typography, Theme tokens
+│       │   └── viewmodel/      # ViewModels per feature
+│       └── res/
+├── DESIGN.md                   # Design system documentation
 ├── README.md
 └── build.gradle.kts
-
 ---
 
 ## Lisensi
