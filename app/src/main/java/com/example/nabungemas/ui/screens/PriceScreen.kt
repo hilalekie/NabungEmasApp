@@ -148,7 +148,7 @@ fun PriceScreen(
                             text = formatIdr(goldPrice.pricePerGramIdr),
                             fontFamily = PlusJakartaSans,
                             fontWeight = FontWeight.Bold,
-                            fontSize = 24.sp,
+                            fontSize = 23.sp,
                             color = Color.White
                         )
                         Text(
