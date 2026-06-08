@@ -130,22 +130,21 @@ Pastikan kamu sudah menginstal:
 
 ## Struktur Proyek
 NabungEmasApp/
-├── app/
-│   └── src/main/
-│       ├── java/.../nabungemas/
-│       │   ├── data/           # Room DB, Repository, API Service
-│       │   ├── di/             # Hilt Dependency Injection modules
-│       │   ├── domain/         # Use cases & model
-│       │   ├── ui/
-│       │   │   ├── components/ # Reusable Compose components
-│       │   │   ├── screen/     # Screen composables (Home, Saving, Price, About)
-│       │   │   └── theme/      # Color, Typography, Theme tokens
-│       │   └── viewmodel/      # ViewModels per feature
-│       └── res/
-├── DESIGN.md                   # Design system documentation
-├── README.md
-└── build.gradle.kts
----
+  app/
+    src/main/
+      java/.../nabungemas/
+        data/           # Room DB, Repository, API Service
+        di/             # Hilt Dependency Injection modules
+        domain/         # Use cases & model
+        ui/
+          components/   # Reusable Compose components
+          screen/       # Screen composables (Home, Saving, Price, About)
+          theme/        # Color, Typography, Theme tokens
+        viewmodel/      # ViewModels per feature
+      res/
+  DESIGN.md             # Design system documentation
+  README.md
+  build.gradle.kts
 
 ## Lisensi
 
