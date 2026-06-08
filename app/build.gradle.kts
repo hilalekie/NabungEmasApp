@@ -2,10 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
-<<<<<<< HEAD
-=======
     id("org.jetbrains.kotlin.plugin.serialization") version "2.2.10"
->>>>>>> 07b0f42 (Inisialisasi git dengan .gitignore yang bersih)
 }
 
 android {
@@ -35,11 +32,9 @@ android {
         }
     }
     compileOptions {
-<<<<<<< HEAD
-=======
         isCoreLibraryDesugaringEnabled = true
 
->>>>>>> 07b0f42 (Inisialisasi git dengan .gitignore yang bersih)
+
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -57,15 +52,13 @@ android {
 }
 
 dependencies {
-<<<<<<< HEAD
-=======
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
     implementation("io.github.jan-tennert.supabase:gotrue-kt:2.6.1")
     implementation("io.github.jan-tennert.supabase:postgrest-kt:2.6.1")
     implementation("io.ktor:ktor-client-android:2.3.11")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 
->>>>>>> 07b0f42 (Inisialisasi git dengan .gitignore yang bersih)
+
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")

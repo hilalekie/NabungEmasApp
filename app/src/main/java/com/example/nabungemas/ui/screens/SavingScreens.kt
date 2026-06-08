@@ -101,6 +101,10 @@ fun SavingListScreen(
 
     val activeCount = goals.count { !it.isCompleted }
 
+    LaunchedEffect(Unit) {
+        repository.fetchGoals()
+    }
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -871,6 +875,7 @@ fun AddEditSavingScreen(
 
     var titleError by remember { mutableStateOf("") }
     var targetError by remember { mutableStateOf("") }
+    var saveError by remember { mutableStateOf("") }
 
     val isEditMode = savingId != null
 
@@ -880,7 +885,7 @@ fun AddEditSavingScreen(
             if (goal != null) {
                 title = goal.title
                 targetGrams = goal.targetGrams.toString()
-                description = goal.description
+                description = goal.description ?: ""
             }
         }
     }
@@ -1056,6 +1061,17 @@ fun AddEditSavingScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
+            if (saveError.isNotEmpty()) {
+                Text(
+                    text = saveError,
+                    color = androidx.compose.ui.graphics.Color.Red,
+                    fontFamily = PlusJakartaSans,
+                    fontSize = 13.sp,
+                    modifier = Modifier.padding(horizontal = 20.dp)
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+
             GoldButton(
                 text = "Simpan Tabungan",
                 onClick = {
@@ -1071,12 +1087,18 @@ fun AddEditSavingScreen(
                     }
                     if (isValid && targetVal != null) {
                         coroutineScope.launch {
-                            if (isEditMode && savingId != null) {
-                                repository.updateGoal(savingId, title, targetVal, description)
-                            } else {
-                                repository.addGoal(title, targetVal, description)
+                            try {
+                                if (isEditMode && savingId != null) {
+                                    repository.updateGoal(savingId, title, targetVal, description)
+                                } else {
+                                    repository.addGoal(title, targetVal, description)
+                                }
+                                navController.navigate("main?tab=saving") {
+                                    popUpTo("main?tab={tab}") { inclusive = true }
+                                }
+                            } catch (e: Exception) {
+                                saveError = "Gagal menyimpan: ${e.localizedMessage}"
                             }
-                            navController.popBackStack()
                         }
                     }
                 },

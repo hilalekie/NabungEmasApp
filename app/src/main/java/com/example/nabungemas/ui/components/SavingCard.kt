@@ -139,10 +139,10 @@ fun SavingCard(
                             fontSize = 18.sp,
                             color = MaterialTheme.colorScheme.onSurface
                         )
-                        if (goal.description.isNotEmpty()) {
+                        if (!goal.description.isNullOrEmpty()) {
                             Spacer(modifier = Modifier.height(2.dp))
                             Text(
-                                text = goal.description,
+                                text = goal.description ?: "",
                                 fontFamily = PlusJakartaSans,
                                 fontWeight = FontWeight.Normal,
                                 fontSize = 12.sp,

@@ -30,6 +30,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -50,10 +51,11 @@ import com.example.nabungemas.ui.theme.PlusJakartaSans
 @Composable
 fun EditProfileScreen(
     navController: NavController,
+    authViewModel: AuthViewModel,
     modifier: Modifier = Modifier
 ) {
-    var name by remember { mutableStateOf("Muhammad Fatahila") }
-    var email by remember { mutableStateOf("fatahila.m@email.com") }
+    var name by remember { mutableStateOf(authViewModel.getCurrentUserFullName()) }
+    var email by remember { mutableStateOf(authViewModel.getCurrentUserEmail()) }
 
     Column(
         modifier = modifier
@@ -170,15 +172,33 @@ fun EditProfileScreen(
             Spacer(modifier = Modifier.height(48.dp))
 
             val isFormValid = name.isNotBlank() && email.isNotBlank()
+            var saveError by remember { mutableStateOf("") }
+            val isLoading by authViewModel.isLoading.collectAsState()
+
+            if (saveError.isNotEmpty()) {
+                Text(
+                    text = saveError,
+                    color = androidx.compose.ui.graphics.Color.Red,
+                    fontFamily = PlusJakartaSans,
+                    fontSize = 13.sp,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+            }
 
             GoldButton(
-                text = "Simpan Perubahan",
+                text = if (isLoading) "Menyimpan..." else "Simpan Perubahan",
                 onClick = {
-                    // logic save profile
-                    navController.popBackStack()
+                    saveError = ""
+                    authViewModel.updateProfile(name, email) { success, errorMsg ->
+                        if (success) {
+                            navController.popBackStack()
+                        } else {
+                            saveError = "Gagal menyimpan: ${errorMsg ?: "Terjadi kesalahan"}"
+                        }
+                    }
                 },
                 modifier = Modifier.fillMaxWidth(),
-                enabled = isFormValid
+                enabled = isFormValid && !isLoading
             )
         }
     }

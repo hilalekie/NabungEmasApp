@@ -1,14 +1,18 @@
 package com.example.nabungemas.data
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.UUID
 
+@Serializable
 data class SavingGoal(
-    val id: String = UUID.randomUUID().toString(),
-    val title: String,
-    val targetGrams: Double,
-    val accumulatedGrams: Double = 0.0,
-    val description: String = "",
-    val createdAt: Long = System.currentTimeMillis()
+    @SerialName("id") val id: String = UUID.randomUUID().toString(),
+    @SerialName("user_id") val userId: String = "",
+    @SerialName("name") val title: String,
+    @SerialName("description") val description: String? = null,
+    @SerialName("target_gram") val targetGrams: Double,
+    @SerialName("current_gram") val accumulatedGrams: Double = 0.0,
+    @SerialName("is_active") val isActive: Boolean = true
 ) {
     val progress: Float
         get() = if (targetGrams > 0) (accumulatedGrams / targetGrams).toFloat().coerceIn(0f, 1f) else 0f

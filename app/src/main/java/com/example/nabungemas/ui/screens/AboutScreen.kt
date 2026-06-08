@@ -63,10 +63,7 @@ import com.example.nabungemas.ui.theme.PlusJakartaSans
 @Composable
 fun AboutScreen(
     navController: NavController,
-<<<<<<< HEAD
-=======
     authViewModel: com.example.nabungemas.ui.screens.AuthViewModel, // Tambahkan baris ini gess
->>>>>>> 07b0f42 (Inisialisasi git dengan .gitignore yang bersih)
     modifier: Modifier = Modifier
 ) {
     var showLogoutDialog by remember { mutableStateOf(false) }
@@ -77,16 +74,11 @@ fun AboutScreen(
         ConfirmationDialog(
             onDismissRequest = { showLogoutDialog = false },
             onConfirm = {
-<<<<<<< HEAD
-                navController.navigate(Screen.Login.route) {
-                    popUpTo(0) { inclusive = true }
-=======
                 // UPDATE: Panggil fungsi logout asli Supabase di sini gess!
                 authViewModel.signOut {
                     navController.navigate(Screen.Login.route) {
                         popUpTo(0) { inclusive = true }
                     }
->>>>>>> 07b0f42 (Inisialisasi git dengan .gitignore yang bersih)
                 }
             },
             title = "Keluar dari Aplikasi?",
